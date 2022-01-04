@@ -3,4 +3,4 @@
 Tool for downloading CIA files on your Nintendo 3DS via local network using FBI
 
 ## Building
-Just run `dotnet build` and voila!
+For building application execute `dotnet build` command.
