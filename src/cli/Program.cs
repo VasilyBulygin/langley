@@ -31,9 +31,11 @@ namespace langley.cli
                 Port = port
             };
 
+            var file = args[1];
+
             using var server = new Server(settings);
             await server.StartAsync();
-            await server.SendAsync(string.Empty, new ConsoleProgressObserver());
+            await server.SendAsync(file, new ConsoleProgressObserver());
         }
     }
 }
