@@ -8,21 +8,26 @@
         x:Class="langley.gui.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="langley">
-
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
   <Grid ColumnDefinitions="1*,3*">
-      <DockPanel Grid.Column="0">
-          <Panel DockPanel.Dock="Top">
-              <StackPanel Orientation="Horizontal">
-                  <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
-                  <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
-              </StackPanel>
-          </Panel>
-          <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}" 
-                   SelectedItem="{Binding Path=SelectedFile}"/>
+    <DockPanel Grid.Column="0">
+      <Panel DockPanel.Dock="Top">
+        <StackPanel Orientation="Horizontal">
+          <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
+          <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
+        </StackPanel>
+      </Panel>
+      <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}"
+               SelectedItem="{Binding Path=SelectedFile}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Path}"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
 
-      </DockPanel>
+    </DockPanel>
   </Grid>
 </Window>
