@@ -3,13 +3,26 @@
         xmlns:vm="using:langley.gui.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"
+        Width="640" Height="480"
         x:Class="langley.gui.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="langley.ui">
+        Title="langley">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+  <Grid ColumnDefinitions="1*,3*">
+      <DockPanel Grid.Column="0">
+          <Panel DockPanel.Dock="Top">
+              <StackPanel Orientation="Horizontal">
+                  <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
+                  <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
+              </StackPanel>
+          </Panel>
+          <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}" 
+                   SelectedItem="{Binding Path=SelectedFile}"/>
 
+      </DockPanel>
+  </Grid>
 </Window>
