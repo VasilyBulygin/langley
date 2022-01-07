@@ -9,11 +9,11 @@ namespace langley.gui.ViewModels
 
     public class BaseViewModel<T> : BaseViewModel
     {
-        protected T Model;
-
         protected BaseViewModel(T model)
         {
             Model = model;
         }
+
+        public T Model { get; protected set; }
     }
 }

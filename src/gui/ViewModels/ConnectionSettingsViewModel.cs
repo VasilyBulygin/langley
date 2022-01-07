@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace langley.gui.ViewModels
 {
-    partial class ConnectionSettingsViewModel : BaseViewModel<ConnectionSettings>
+    public class ConnectionSettingsViewModel : BaseViewModel<ConnectionSettings>
     {
         public ConnectionSettingsViewModel(ConnectionSettings model) : base(model)
         {

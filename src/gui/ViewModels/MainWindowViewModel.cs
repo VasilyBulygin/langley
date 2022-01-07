@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using DynamicData;
+using langley.core;
 using ReactiveUI;
 
 namespace langley.gui.ViewModels
@@ -34,6 +36,14 @@ namespace langley.gui.ViewModels
         private FileViewModel? _selectedFile;
         private ReactiveCommand<Unit, Unit>? _addFileCommand;
         private ReactiveCommand<Unit, Unit>? _removeFileCommand;
+        private ReactiveCommand<Unit, Unit>? _startLoadCommand;
+
+        public MainWindowViewModel()
+        {
+            Settings = new ConnectionSettingsViewModel(new ConnectionSettings());
+        }
+
+        public ConnectionSettingsViewModel Settings { get; }
 
         public ObservableCollection<FileViewModel> Files { get; } = new();
 
@@ -71,6 +81,22 @@ namespace langley.gui.ViewModels
             if(_selectedFile is null)
                 return;
             Files.Remove(_selectedFile);
+        }
+
+        #endregion
+
+        #region StartLoadCommand
+
+        public ReactiveCommand<Unit, Unit> StartLoadCommand => _startLoadCommand ??= ReactiveCommand.CreateFromTask(StartLoadAsync);
+
+        private async Task StartLoadAsync()
+        {
+            using var server = new Server(Settings.Model);
+            await server.StartAsync();
+            foreach (var fileViewModel in Files)
+            {
+                await server.SendAsync(fileViewModel.Path, new Progress<int>());
+            }
         }
 
         #endregion
