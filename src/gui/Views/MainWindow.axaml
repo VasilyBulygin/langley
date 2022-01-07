@@ -11,12 +11,16 @@
   <Design.DataContext>
     <vm:MainWindowViewModel/>
   </Design.DataContext>
-  <Grid ColumnDefinitions="1*,3*">
-    <DockPanel Grid.Column="0">
+    <DockPanel>
       <Panel DockPanel.Dock="Top">
         <StackPanel Orientation="Horizontal">
           <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
           <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
+          <Label Content="Address: " />
+          <TextBox Text="{Binding Path=Settings.Address}" />
+          <Label Content="Port: " />
+          <NumericUpDown Value="{Binding Path=Settings.Port}" />
+          <Button Content="Start load" Command="{Binding Path=StartLoadCommand}"/>
         </StackPanel>
       </Panel>
       <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}"
@@ -29,5 +33,4 @@
       </ListBox>
 
     </DockPanel>
-  </Grid>
 </Window>
