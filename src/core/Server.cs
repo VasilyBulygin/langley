@@ -26,10 +26,10 @@ namespace langley.core
             await _socket.ConnectAsync(_connectionSettings.Address, _connectionSettings.Port);
         }
 
-        public async Task SendAsync(string filePath, IProgress<int> progress)
+        public async Task<bool> TrySendAsync(string filePath, IProgress<int> progress)
         {
             if (_socket is null || !_socket.Connected)
-                throw new Exception();
+                return false;
             await using var stream = new FileStream(filePath, FileMode.Open);
             using var reader = new BinaryReader(stream);
 
@@ -40,9 +40,18 @@ namespace langley.core
             int read;
             while ((read = reader.Read(buffer, 0, buffer.Length)) > 0)
             {
-                await _socket.SendAsync(new ArraySegment<byte>(buffer, 0, read), SocketFlags.DontRoute);
+                try
+                {
+                    await _socket.SendAsync(new ArraySegment<byte>(buffer, 0, read), SocketFlags.DontRoute);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
                 progress.Report(read);
             }
+
+            return true;
         }
 
         public void Dispose()

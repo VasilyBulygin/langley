@@ -92,10 +92,17 @@ namespace langley.gui.ViewModels
         private async Task StartLoadAsync()
         {
             using var server = new Server(Settings.Model);
-            await server.StartAsync();
-            foreach (var fileViewModel in Files)
+            try
             {
-                await server.SendAsync(fileViewModel.Path, new Progress<int>());
+                await server.StartAsync();
+            }
+            catch (Exception e)
+            {
+                //show error dialog
+            }
+            foreach (var fileViewModel in Files)
+            { 
+                await server.TrySendAsync(fileViewModel.Path, new Progress<int>());
             }
         }
 

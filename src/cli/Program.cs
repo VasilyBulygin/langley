@@ -35,7 +35,7 @@ namespace langley.cli
 
             using var server = new Server(settings);
             await server.StartAsync();
-            await server.SendAsync(file, new ConsoleProgressObserver());
+            await server.TrySendAsync(file, new ConsoleProgressObserver());
         }
     }
 }
