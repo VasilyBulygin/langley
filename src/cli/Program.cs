@@ -35,7 +35,10 @@ namespace langley.cli
 
             using var server = new Server(settings);
             await server.StartAsync();
-            await server.TrySendAsync(file, new ConsoleProgressObserver());
+            if (!await server.TrySendAsync(file, new ConsoleProgressObserver()))
+            {
+                Console.WriteLine("Cannot send file to console");
+            }
         }
     }
 }
