@@ -23,7 +23,7 @@ namespace langley.core
             if (_socket is {Connected: true})
                 return;
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            await _socket.ConnectAsync(_connectionSettings.Address, _connectionSettings.Port);
+            await _socket.ConnectAsync(_connectionSettings.Address, _connectionSettings.Port).ConfigureAwait(false);
         }
 
         public async Task<bool> TrySendAsync(string filePath, IProgress<int> progress)
@@ -34,7 +34,7 @@ namespace langley.core
             using var reader = new BinaryReader(stream);
 
             //Sending length of the file in a little-endian format
-            await _socket.SendAsync(BitConverter.GetBytes(stream.Length).Reverse().ToArray(), SocketFlags.DontRoute);
+            await _socket.SendAsync(BitConverter.GetBytes(stream.Length).Reverse().ToArray(), SocketFlags.DontRoute).ConfigureAwait(false);
 
             var buffer = new byte[BufferSize];
             int read;
@@ -42,7 +42,7 @@ namespace langley.core
             {
                 try
                 {
-                    await _socket.SendAsync(new ArraySegment<byte>(buffer, 0, read), SocketFlags.DontRoute);
+                    await _socket.SendAsync(new ArraySegment<byte>(buffer, 0, read), SocketFlags.DontRoute).ConfigureAwait(false);
                 }
                 catch (Exception)
                 {
