@@ -17,7 +17,7 @@
           <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
           <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
           <Label Content="Address: " />
-          <TextBox Text="{Binding Path=Settings.Address}" />
+          <TextBox Text="{Binding Path=Settings.Address}" Width="140" MaxLength="15"/>
           <Label Content="Port: " />
           <NumericUpDown Value="{Binding Path=Settings.Port}" />
           <Button Content="Start load" Command="{Binding Path=StartLoadCommand}"/>
