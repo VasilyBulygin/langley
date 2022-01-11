@@ -4,3 +4,13 @@ Tool for downloading CIA files on your Nintendo 3DS via local network using FBI
 
 ## Building
 For building application execute `dotnet build` command.
+
+## Projects
+### langley.core
+Core server implementation
+
+### lanley.cli
+Command-line interface utility
+
+### langley.gui
+Utility with graphical user interface based on AvaloniaUI
