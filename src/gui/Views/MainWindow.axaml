@@ -8,29 +8,38 @@
         x:Class="langley.gui.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="langley">
+  <Window.Styles>
+    <Style Selector="Button">
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="MinWidth" Value="28" />
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="Background" Value="{StaticResource AccentButtonBackground}" />
+      <Setter Property="Foreground" Value="{StaticResource AccentButtonForeground}" />
+      <Setter Property="Margin" Value="2" />
+    </Style>
+  </Window.Styles>
   <Design.DataContext>
     <vm:MainWindowViewModel/>
   </Design.DataContext>
-    <DockPanel>
-      <Panel DockPanel.Dock="Top">
-        <StackPanel Orientation="Horizontal">
-          <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
-          <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
-          <Label Content="Address: " />
-          <TextBox Text="{Binding Path=Settings.Address}" Width="140" MaxLength="15"/>
-          <Label Content="Port: " />
-          <NumericUpDown Value="{Binding Path=Settings.Port}" />
-          <Button Content="Start load" Command="{Binding Path=StartLoadCommand}"/>
-        </StackPanel>
-      </Panel>
-      <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}"
-               SelectedItem="{Binding Path=SelectedFile}">
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <TextBlock Text="{Binding Path}"/>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
+  <DockPanel>
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+      <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
+      <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
+      <Label Content="Address: " />
+      <TextBox Text="{Binding Path=Settings.Address}" Width="140" MaxLength="15"/>
+      <Label Content="Port: " />
+      <NumericUpDown Value="{Binding Path=Settings.Port}" />
+      <Button Content="Start load" Command="{Binding Path=StartLoadCommand}"/>
+    </StackPanel>
+    <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}"
+             SelectedItem="{Binding Path=SelectedFile}">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding Path}"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
 
-    </DockPanel>
+  </DockPanel>
 </Window>
