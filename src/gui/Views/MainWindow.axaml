@@ -17,6 +17,26 @@
       <Setter Property="Background" Value="{StaticResource AccentButtonBackground}" />
       <Setter Property="Foreground" Value="{StaticResource AccentButtonForeground}" />
       <Setter Property="Margin" Value="2" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="Label">
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Margin" Value="2" />
+      <Setter Property="Padding" Value="2" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="NumericUpDown">
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Margin" Value="2" />
+      <Setter Property="FontSize" Value="12" />
     </Style>
   </Window.Styles>
   <Design.DataContext>
@@ -27,9 +47,9 @@
       <Button Content="+" Command="{Binding Path=AddFileCommand}"/>
       <Button Content="-" Command="{Binding Path=RemoveFileCommand}"/>
       <Label Content="Address: " />
-      <TextBox Text="{Binding Path=Settings.Address}" Width="140" MaxLength="15"/>
+      <TextBox Text="{Binding Path=Settings.Address}" Watermark="Address" Width="140" MaxLength="15"/>
       <Label Content="Port: " />
-      <NumericUpDown Value="{Binding Path=Settings.Port}" />
+      <NumericUpDown Value="{Binding Path=Settings.Port}"/>
       <Button Content="Start load" Command="{Binding Path=StartLoadCommand}"/>
     </StackPanel>
     <ListBox DockPanel.Dock="Top" Items="{Binding Path=Files}"
