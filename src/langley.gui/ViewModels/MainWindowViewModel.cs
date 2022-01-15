@@ -7,7 +7,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using DynamicData;
-using langley.core;
+using langley;
 using ReactiveUI;
 
 namespace langley.gui.ViewModels

@@ -1,4 +1,4 @@
-﻿namespace langley.core
+﻿namespace langley
 {
     public class ConnectionSettings
     {

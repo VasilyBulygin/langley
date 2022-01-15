@@ -1,4 +1,4 @@
-﻿using langley.core;
+﻿using langley;
 using ReactiveUI;
 
 namespace langley.gui.ViewModels

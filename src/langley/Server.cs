@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace langley.core
+namespace langley
 {
     public class Server : IDisposable
     {
